@@ -9,3 +9,8 @@
 - fail:
     msg: "Please make sure Google Cloud SDK is installed before executing the role."
   when: gcloud_installed | failed
+
+- name: Create instance on google cloud platform
+  command: gcloud compute instances create "{{ item }}"
+  changed_when: false
+  with_items: "{{ instance_name }}"

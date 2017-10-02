@@ -1,6 +1,6 @@
 ---
 
-- name: Porvision GCE infrastructure for DCOS
+- name: Create Instance on Google Cloud Platform
   gather_facts: false
   hosts: provisioner
   roles:
