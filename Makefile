@@ -1,4 +1,4 @@
 .PHONY: up
 
 up:
-	@ansible-playbook -i hosts/inventory.ini -e gce-up.yaml
+	@ansible-playbook -i hosts/inventory.ini gce-up.yaml
