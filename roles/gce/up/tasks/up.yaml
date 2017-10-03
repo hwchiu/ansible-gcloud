@@ -11,6 +11,6 @@
   when: gcloud_installed | failed
 
 - name: Create instance on google cloud platform
-  command: gcloud compute instances create "{{ item }}"
+  command: gcloud compute instances create "{{ item }}" --boot-disk-size="{{instance_config.boot_disk_size}}"
   changed_when: false
   with_items: "{{ instance_name }}"
