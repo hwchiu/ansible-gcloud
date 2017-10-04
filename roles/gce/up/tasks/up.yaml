@@ -11,7 +11,7 @@
   when: gcloud_installed | failed
 
 - name: Check if instances are created
-  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(name)'"
+  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(status)'"
   register: instance_created
   changed_when: false
   ignore_errors: yes
@@ -20,3 +20,8 @@
   command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}"
   changed_when: false
   when: instance_created.stdout == ""
+
+- name: Start instance if it's on TERMINATED status
+  command: gcloud compute instances start "{{ basic_config.name }}"
+  changed_when: false
+  when: instance_created.stdout == "TERMINATED"
