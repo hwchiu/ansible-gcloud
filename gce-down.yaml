@@ -4,4 +4,4 @@
   gather_facts: false
   hosts: provisioner
   roles:
-    - role: roles/gce/up
+    - role: roles/gce/down

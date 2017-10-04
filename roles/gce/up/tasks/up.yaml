@@ -10,7 +10,6 @@
     msg: "Please make sure Google Cloud SDK is installed before executing the role."
   when: gcloud_installed | failed
 
-
 - name: Check if instances are created
   command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(name)'"
   register: instance_created
