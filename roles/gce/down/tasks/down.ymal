@@ -1,0 +1,15 @@
+---
+
+- name: Check if Google Cloud SDK is installed
+  command: gcloud version
+  register: gcloud_installed
+  changed_when: false
+  ignore_errors: yes
+
+- fail:
+    msg: "Please make sure Google Cloud SDK is installed before executing the role."
+    when: gcloud_installed | failed
+
+- name: Stop instance on google cloud platform
+  command: gcloud compute instances stop "{{ basic_config.name }}"
+  changed_when: false
