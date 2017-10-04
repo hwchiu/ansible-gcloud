@@ -11,7 +11,7 @@
   when: gcloud_installed | failed
 
 - name: Check if instances are created
-  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(name)'"
+  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(status)'"
   register: instance_created
   changed_when: false
   ignore_errors: yes
