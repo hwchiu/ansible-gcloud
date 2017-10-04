@@ -1,4 +1,5 @@
 ---
+# vim:ft=ansible:
 basic_config:
     boot_disk_size: 10GB
     name: basic

@@ -1,5 +1,5 @@
 ---
-
+# vim:ft=ansible:
 - name: Check if Google Cloud SDK is installed
   command: gcloud version
   register: gcloud_installed
@@ -8,8 +8,16 @@
 
 - fail:
     msg: "Please make sure Google Cloud SDK is installed before executing the role."
-    when: gcloud_installed | failed
+  when: gcloud_installed | failed
+
+
+- name: Check if instances are created
+  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(name)'"
+  register: instance_created
+  changed_when: false
+  ignore_errors: yes
 
 - name: Create instance on google cloud platform
   command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}"
   changed_when: false
+  when: instance_created.stdout == ""
