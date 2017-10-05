@@ -26,7 +26,12 @@
   changed_when: false
   when: instance_created.stdout == "TERMINATED"
 
-- name: "Generate {{ inventory_output_dir }}"
+- name: Get metadata about instacnes
+  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(status)'"
+  register: instances_metadata
+  ignore_errors: yes
+
+- name: "Generate {{ inventory_output_file }}"
   template:
     src: inventory.ini.j2
     dest: "{{ inventory_output_file }}"

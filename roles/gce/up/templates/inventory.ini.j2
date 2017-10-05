@@ -1,2 +1,5 @@
-{% for value in hostvars.localhost.etcd_metadata.stdout_lines %}
+{% for value in hostvars.localhost.instances_metadata.stdout_lines %}
 {% set instance_metadata = value.split(',') %}
+{% endfor %}
+
+s={{ instances_metadata.stdout_lines }}
