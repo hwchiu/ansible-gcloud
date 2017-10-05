@@ -25,3 +25,8 @@
   command: gcloud compute instances start "{{ basic_config.name }}"
   changed_when: false
   when: instance_created.stdout == "TERMINATED"
+
+- name: "Generate {{ inventory_output_dir }}"
+  template:
+    src: inventory.ini.j2
+    dest: "{{ inventory_output_file }}"
