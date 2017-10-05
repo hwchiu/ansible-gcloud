@@ -3,3 +3,4 @@
 basic_config:
     boot_disk_size: 10GB
     name: basic
+inventory_output_file: output.ini
