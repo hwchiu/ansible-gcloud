@@ -1,0 +1,2 @@
+{% for value in hostvars.localhost.etcd_metadata.stdout_lines %}
+{% set instance_metadata = value.split(',') %}
