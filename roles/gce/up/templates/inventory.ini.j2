@@ -1,5 +1,4 @@
-{% for value in hostvars.localhost.instances_metadata.stdout_lines %}
-{% set instance_metadata = value.split(',') %}
-{% endfor %}
-
-s={{ instances_metadata.stdout_lines }}
+{% set instance_metadata = instances_metadata.stdout.split(',') %}
+name={{ instance_metadata[0] }}
+internal_ip={{ instance_metadata[1] }}
+external_ip={{ instance_metadata[2] }}
