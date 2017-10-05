@@ -27,7 +27,7 @@
   when: instance_created.stdout == "TERMINATED"
 
 - name: Get metadata about instacnes
-  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(status)'"
+  command: gcloud compute instances list --filter='name:{{ basic_config.name }}' --format="value[separator=','](name, networkInterfaces[0].networkIP, networkInterfaces[0].accessConfigs[0].natIP)"
   register: instances_metadata
   ignore_errors: yes
 
