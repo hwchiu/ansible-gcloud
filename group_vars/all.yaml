@@ -4,7 +4,7 @@ basic_config:
     boot_disk_size: 10GB
     boot_disk_type: pd-standard
     name: basic
-    image_famly: ubuntu-1604-lts
+    image_family: ubuntu-1604-lts
     image_project: ubuntu-os-cloud
     can_ip_forward: --can-ip-forward
     zone: asia-east1-c
