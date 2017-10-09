@@ -7,4 +7,5 @@ basic_config:
     image_famly: ubuntu-1604-lts
     image_project: ubuntu-os-cloud
     can_ip_forward: --can-ip-forward
+    zone: asia-east1-c
 inventory_output_file: ./output.ini
