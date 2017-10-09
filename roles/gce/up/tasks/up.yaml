@@ -17,7 +17,7 @@
   ignore_errors: yes
 
 - name: Create instance on google cloud platform
-  command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}"
+  command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}} --image-family="{{ basic_config.image_famly }}"
   changed_when: false
   when: instance_created.stdout == ""
 

@@ -3,4 +3,5 @@
 basic_config:
     boot_disk_size: 10GB
     name: basic
+    image_famly: ubuntu-1604-lts
 inventory_output_file: ./output.ini
