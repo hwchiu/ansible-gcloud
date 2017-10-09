@@ -1,6 +1,8 @@
 ## About
-This repostory provides an example how to use `gcloud` tool to manage your google cloud platform.
-Besides, all examples are based on the ansible playbook and ansible will generate some userful meta data after the opration of `gcloud`.
+This repostory provides an example how to use `gcloud` tool to manage your google cloud platform.  
+
+Besides, all examples are based on the ansible playbook and ansible will generate some userful meta data after the opration of `gcloud`.  
+
 For example, You can get the instances' IP addresses after you create instances on google computing platform, ssh to those instacnes via IP address and customized setup your instances.
 
 ## Support Examples
