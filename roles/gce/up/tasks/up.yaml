@@ -17,7 +17,7 @@
   ignore_errors: yes
 
 - name: Create instance on google cloud platform
-  command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}} --boot-disk-type="{{ basic_config.boot_disk_type }}"--image-family="{{ basic_config.image_famly }}"
+  command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}" --boot-disk-type="{{ basic_config.boot_disk_type }}" --image-family="{{ basic_config.image_famly }}" --image-project="{{ basic_config.image_project }}" "{{ basic_config.can_ip_forward}}"
   changed_when: false
   when: instance_created.stdout == ""
 
