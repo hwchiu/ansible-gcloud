@@ -1,0 +1,37 @@
+---
+# vim:ft=ansible:
+- name: Check if Google Cloud SDK is installed
+  command: gcloud version
+  register: gcloud_installed
+  changed_when: false
+  ignore_errors: yes
+
+- fail:
+    msg: "Please make sure Google Cloud SDK is installed before executing the role."
+  when: gcloud_installed | failed
+
+- name: Check if instances are created
+  command: "gcloud compute instances list --filter='name:{{ basic_config.name }}' --format='value(status)'"
+  register: instance_created
+  changed_when: false
+  ignore_errors: yes
+
+- name: Create instance on google cloud platform
+  command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}" --boot-disk-type="{{ basic_config.boot_disk_type }}" --image-family="{{ basic_config.image_famly }}" --image-project="{{ basic_config.image_project }}" "{{ basic_config.can_ip_forward}}"
+  changed_when: false
+  when: instance_created.stdout == ""
+
+- name: Start instance if it's on TERMINATED status
+  command: gcloud compute instances start "{{ basic_config.name }}"
+  changed_when: false
+  when: instance_created.stdout == "TERMINATED"
+
+- name: Get metadata about instacnes
+  command: gcloud compute instances list --filter='name:{{ basic_config.name }}' --format="value[separator=','](name, networkInterfaces[0].networkIP, networkInterfaces[0].accessConfigs[0].natIP)"
+  register: instances_metadata
+  ignore_errors: yes
+
+- name: "Generate {{ inventory_output_file }}"
+  template:
+    src: inventory.ini.j2
+    dest: "{{ inventory_output_file }}"

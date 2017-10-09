@@ -1,8 +1,8 @@
 .PHONY: up down
 
-all: up
+all: create-instance
 
-up:
-	@ansible-playbook -i hosts/inventory.ini gce-up.yaml
+create-instance:
+	@ansible-playbook -i hosts/inventory.ini gce-create-instance.yaml
 down:
 	@ansible-playbook -i hosts/inventory.ini gce-down.yaml
