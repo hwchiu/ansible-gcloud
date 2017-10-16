@@ -27,7 +27,7 @@
 - name: Create instance on google cloud platform
   command: >
     gcloud compute instances create
-    "{{ hostvars.localhost.instance_names.results | map(attribute='msg') | list | join(' ') }}"
+    {{ hostvars.localhost.instance_names.results | map(attribute='msg') | list | join(' ') }}
     --boot-disk-size="{{basic_config.boot_disk_size}}"
     --boot-disk-type="{{ basic_config.boot_disk_type }}"
     --image-family="{{ basic_config.image_family }}"
