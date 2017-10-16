@@ -9,4 +9,5 @@ basic_config:
     can_ip_forward: --can-ip-forward
     zone: asia-east1-c
     ssh_private_key_file: "{{ lookup('env', 'HOME') }}/.ssh/gcloud.pub"
+    instances_count: 3
 inventory_output_file: ./output.ini

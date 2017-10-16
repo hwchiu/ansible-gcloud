@@ -16,6 +16,14 @@
   changed_when: false
   ignore_errors: yes
 
+- name: Set instance names
+  debug:
+    msg: "{{ basic_config.name }}-{{ '%03d'|format(item|int) }}"
+  register: instance_names
+  with_sequence:
+    - "start=1 end={{ basic_config.instances_count }}"
+  when: instance_created | failed
+
 - name: Create instance on google cloud platform
   command: gcloud compute instances create "{{ basic_config.name }}" --boot-disk-size="{{basic_config.boot_disk_size}}" --boot-disk-type="{{ basic_config.boot_disk_type }}" --image-family="{{ basic_config.image_family }}" --image-project="{{ basic_config.image_project }}" "{{ basic_config.can_ip_forward}}" --zone="{{ basic_config.zone }}" --metadata-from-file ssh-keys={{ basic_config.ssh_private_key_file }}
   changed_when: false
