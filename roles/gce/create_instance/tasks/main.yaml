@@ -48,6 +48,7 @@
   register: instances_metadata
   ignore_errors: yes
 
+- debug: msg="{{ instances_metadata.stdout }}"
 - name: "Generate {{ inventory_output_file }}"
   template:
     src: inventory.ini.j2
