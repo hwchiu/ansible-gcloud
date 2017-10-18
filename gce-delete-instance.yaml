@@ -1,0 +1,7 @@
+---
+
+- name: Delete Instance on Google Cloud Platform
+  gather_facts: false
+  hosts: provisioner
+  roles:
+    - role: roles/gce/delete_instance
